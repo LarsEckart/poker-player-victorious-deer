@@ -1,10 +1,15 @@
 package org.leanpoker.player;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.slf4j.Logger;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 public class Player {
 
-    static final String VERSION = "v3 handle exceptions";
+    private static final Logger log = getLogger(Player.class);
+
+    static final String VERSION = "v4 handle exceptions and log them";
 
     public static int betRequest(JsonNode request) {
         try {
@@ -20,6 +25,7 @@ public class Player {
         }
         return 0; }
         catch (Exception e) {
+            log.error(e.getMessage());
             return 0;
         }
     }
